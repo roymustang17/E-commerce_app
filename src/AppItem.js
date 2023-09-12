@@ -9,7 +9,7 @@ export class AppItem extends Component {
       fontSize: "32px",
       background: "linear-gradient(180deg, #FF5733, #000000)",
       WebkitBackgroundClip: "text",
-      // WebkitTextFillColor: "transparent",
+      WebkitTextFillColor: "transparent",
       fontWeight: "bold",
     };
     const styling = {
