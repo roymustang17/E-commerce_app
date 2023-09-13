@@ -5,10 +5,7 @@ const App = () => {
   const [data, setData] = useState([]);
   const [sortRequested, setSortRequested] = useState(false);
   const [itemsToRender, setItemsToRender] = useState([]);
-  // const [filteredData, setFilteredData] = useState([]);
-  const styling = {
-    border: "2px solid red",
-  };
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     fetchApiData();
@@ -32,7 +29,7 @@ const App = () => {
       setItemsToRender(sorted);
       console.log("data sorted");
     } else {
-      setItemsToRender(data); // Reset to the original data when sorting is not requested
+      setItemsToRender(data);
     }
   }, [sortRequested, data]);
 
@@ -51,15 +48,36 @@ const App = () => {
 
   return (
     <>
-      <div>
+      <div style={{ flexDirection: "row" }}>
         <button
-          style={styling}
+          style={{
+            border: "2px solid red",
+          }}
           onClick={() => setSortRequested(!sortRequested)}
         >
           Press me!
         </button>
         <button onClick={filterData}>Try to press me!</button>
+        <div>
+          <button onClick={() => setOpen(!open)}>Choose a category!</button>
+          <ul style={{ display: open ? "inline" : "none" }}>
+            <li onClick={() => setOpen(!open)}>Men's clothing</li>
+            <li>Jewelery</li>
+            <li>Electronics</li>
+            <li>Women's clothing</li>
+          </ul>
+        </div>
       </div>
+
+      {/* <form action="">
+          <select name="" id="">
+            <option value="men's clothing">Choose a category</option>
+            <option value="men's clothing">Men's clothing</option>
+            <option value="jewelery">Jewelery</option>
+            <option value="electronics">Electronics</option>
+            <option value="women's clothing">Women's clothing</option>
+          </select>
+        </form> */}
       <div>
         {itemsToRender.map((items) => {
           const formatText = capitalize(items.category);
